@@ -1,7 +1,7 @@
 const { Router } = require('express')
-const { ParkingCarsRepository } = require('./repository')
+const { CarsHistoryRepository } = require('./repository')
 
-const carsRepository = ParkingCarsRepository()
+const carsRepository = CarsHistoryRepository()
 
 const router = Router()
 
@@ -15,8 +15,6 @@ router.get('/', (_req, res) => {
   .list()
   .then(list => {res.status(200).send(list)})
 })
-
-// {name, sign, date}
 
 router.post('/', async (req, res) => {
   const car = req.body
@@ -39,5 +37,12 @@ router.delete('/:id', async (req, res) => {
   res.status(204).send()
 })
 
+router.delete('/', async (_req, res) => {
+  // Delete all items in the repository
+  await carsRepository.deleteAll()
 
-module.exports = router
+  res.status(204).send()
+})
+
+
+module.exports = router 

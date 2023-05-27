@@ -3,6 +3,7 @@ const cors = require('cors');
 const logger = require('./middlewares/logger')
 const errorHandler = require('./middlewares/error')
 const parking = require('./parking/routes')
+const history = require('./history/routes')
 
 const app = express()
 
@@ -11,6 +12,7 @@ app.use(cors())
 app.use(logger())
 
 app.use('/parking', parking)
+app.use('/history', history)
 
 app.use(errorHandler)
 

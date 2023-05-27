@@ -3,6 +3,7 @@ const logRequest = (log = console.log) => (req, res, next) => {
     url: req.url,
     method: req.method,
     headers: req.headers,
+    body: req.body
   })
   next()
 }
